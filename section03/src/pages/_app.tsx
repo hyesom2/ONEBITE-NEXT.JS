@@ -5,7 +5,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <header>Global Header</header>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   )
 }
