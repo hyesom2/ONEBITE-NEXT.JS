@@ -1,3 +1,4 @@
+import SearchableLayout from '@/components/searchable-layout';
 import { useRouter } from 'next/router';
 
 export default function Page() {
@@ -6,5 +7,11 @@ export default function Page() {
 
   return (
     <h1>Search 페이지의 쿼리 스트링 : { q }</h1>
+  )
+}
+
+Page.getLayout = (page: React.ReactNode) => {
+  return (
+    <SearchableLayout>{page}</SearchableLayout>
   )
 }
