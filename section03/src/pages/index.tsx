@@ -1,14 +1,25 @@
 // CSS Module
 import SearchableLayout from '@/components/searchable-layout';
 import styles from './index.module.css';
+import books from '@/mock/books.json';
+import BookItem from '@/components/book-item';
 
 export default function Home() {
   return (
-    <>
-      {/* <h1 style={{ color: 'red' }}> */}
-      <h1 className={styles.h1}>index 페이지</h1>
-      <h2 className={styles.h2}>H2 입니다.</h2>
-    </>
+    <div className={styles.container}>
+      <section>
+        <h3>지금 추천하는 도서</h3>
+        {books.map((book) => (
+          <BookItem key={book.id} {...book} />
+        ))}
+      </section>
+      <section>
+        <h3>등록된 모든 도서</h3>
+        {books.map((book) => (
+          <BookItem key={book.id} {...book} />
+        ))}
+      </section>
+    </div>
   )
 }
 
