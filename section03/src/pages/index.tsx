@@ -1,47 +1,44 @@
 // CSS Module
 import SearchableLayout from '@/components/searchable-layout';
 import styles from './index.module.css';
-import books from '@/mock/books.json';
+// import books from '@/mock/books.json';
 import BookItem from '@/components/book-item';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { InferGetServerSidePropsType } from 'next';
+import fetchBooks from '@/lib/fetch-books';
+import fetchRandomBooks from '@/lib/fetch-random-books';
 
-// Next.js는 페이지 역할을 하는 파일 안에 `getServerSideProps`같은 Next.js에서 약속된 이름의 함수를 만들어서 export하면 해당 페이지는 이제부터 SSR로 동작하도록 자동으로 설정
-// 컴포넌드보다 먼저 실행이 되어서, 컴포넌트에 필요한 데이터 불러오는 함수
-export const getServerSideProps = () => {
-  // 예) window.location, window.alert
-  // 오류 발쌩 : window is not defined → 서버사이드에서는 window 객체가 없음
-  // 함수 내부 에서는 브라우저에서만 동작하는 코드를 사용할 수 없음
-  
-  console.log('서버사이드프롭스 입니다.');
+export const getServerSideProps = async () => {
+  // const allBooks = await fetchBooks();
+  // const recoBooks = await fetchRandomBooks();
+  // 참고) 요청이 먼저 모든 도서를 가져오고, 그 다음에 해당 도서를 가져오도록 순차적(직렬적인 방식)으로 동작한다.
 
-  const data = 'hello';
+  const [allBooks, recoBooks] = await Promise.all([
+    fetchBooks(),
+    fetchRandomBooks(),
+  ]);
+  // 참고) Promise.all 메서드 : 인수로 전달된 배열 안에 들어있는 모든 비동기 함수들을 동시에 실행시켜주는 메서드 → 병렬적인 방식으로 동작한다.
 
   return {
     props: {
-      data,
-    }
+      allBooks,
+      recoBooks,
+    },
   };
-}
+};
 
-export default function Home({ data } : InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log(data);
-
-  useEffect(() => {
-    console.log(window);
-  }, []);
-
+export default function Home({ allBooks, recoBooks }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div className={styles.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        {books.map((book) => (
+        {recoBooks.map((book) => (
           <BookItem key={book.id} {...book} />
         ))}
-      </section>
+      </section>  
       <section>
         <h3>등록된 모든 도서</h3>
-        {books.map((book) => (
+        {allBooks.map((book) => (
           <BookItem key={book.id} {...book} />
         ))}
       </section>
