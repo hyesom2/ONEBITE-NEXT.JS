@@ -1,28 +1,41 @@
 import SearchableLayout from '@/components/searchable-layout';
 import BookItem from '@/components/book-item';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 import fetchBooks from '@/lib/fetch-books';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { BookData } from '@/types';
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  /* 
-  예) http://localhost:3000/search?q=한입 인 경우 
-  리스트링으로 전달된 검색어를 읽어와 이 검색어에 해당하는 데이터를 
-  백엔드 서버로부터 불러오는 기능을 만들어야 한다.
-  → getServerSideProps 함수에 전달되는 context 매개변수를 활용
-  → context 매개변수 : 현재 브라우저로부터 받은 요청에 대한 모든 정보가 포함
- */
-  // console.log(context.query.q);
-  const q = context.query.q;
-  const books = await fetchBooks(q as string);
+// export const getStaticProps = async (context: GetStaticPropsContext) => {
+//   // SSG 방식
+//   // const q = context.query.q; // type 오류 → getStaticProps 에서는 context.query 프로퍼티가 존재하지 않음
+//   const books = await fetchBooks(q as string);
 
-  return {
-    props: {
-      books
+//   return {
+//     props: {
+//       books
+//     }
+//   };
+// };
+
+// export default function Page({ books }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page() {
+  const [books, setBooks] = useState<BookData[]>([]); // 검색 결과를 저장
+
+  const router = useRouter();
+  const q = router.query.q;
+
+  const fetchSearchResults = async () => {
+    const data = await fetchBooks(q as string);
+    setBooks(data);
+  }
+  
+  useEffect(() => {
+    if (q) {
+      // 검색 결과를 불러오는 로직
+      fetchSearchResults();
     }
-  };
-};
+  }, [q])
 
-export default function Page({ books }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
       {
