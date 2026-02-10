@@ -1,9 +1,22 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import { GetStaticPropsContext, InferGetServerSidePropsType } from 'next';
 import style from "./[id].module.css";
 import fetchOneBook from '@/lib/fetch-one-book';
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const id = context.params!.id; // id값이 반드시 존재한다고 단언
+export const getStaticPaths = () => {
+  return {
+    // 현재 이 페이지에 어떠한 URL 파라미터들이 존재할 수 있는지 → 어떠한 경로들이 존재할 수 있는지 배열로 반환
+    path: [
+      { params: { id: '1'}}, // URL 파라미터는 무조건 "문자열"
+      { params: { id: '2'}},
+      { params: { id: '3'}},
+    ],
+    // 대체, 대비책 옵션
+    fallback: false // false: 존재하지 않는 경로에 대한 요청은 404 오류를 반환
+  }
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const id = context.params!.id;
   const book = await fetchOneBook(Number(id));
 
   return {
@@ -13,7 +26,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   }
 }
 
-export default function Page({ book } : InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page({ book } : InferGetServerSidePropsType<typeof getStaticProps>) {
   if (!book) return "책 정보를 불러오는 데 오류가 발생했습니다.";
   
   const {
