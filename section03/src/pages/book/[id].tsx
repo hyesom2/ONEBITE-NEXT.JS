@@ -10,8 +10,10 @@ export const getStaticPaths = () => {
       { params: { id: '2'}},
       { params: { id: '3'}},
     ],
-    // 대체, 대비책 옵션
+    // 대체, 대비책 옵션 (없는 경로로 요청시)
     fallback: false // false: 존재하지 않는 경로에 대한 요청은 404 오류를 반환
+    // fallback: blocking → blocking: 즉시 생성 (Link SSR)
+    // fallback: true → true: 즉시 생성 + 페이지만 미리 반환
   }
 }
 
