@@ -2,6 +2,6 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ q
   const { q } = await searchParams;
   
   return (
-    <div>Search 페이지 : {q} </div>
+    <div>Search 페이지 : {q}</div>
   )
 }
