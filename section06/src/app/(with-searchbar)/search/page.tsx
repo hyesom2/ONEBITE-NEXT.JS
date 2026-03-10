@@ -3,7 +3,7 @@ import { BookData } from '@/types';
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ q?: string }>; }) {
   const params = await searchParams;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${params.q}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${params.q}`, { cache: 'force-cache'});
   if (!response.ok) {
     return <div>검색 중 오류가 발생했습니다...</div>
   }
