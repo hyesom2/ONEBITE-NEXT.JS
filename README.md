@@ -26,3 +26,8 @@
 [5. 리액트 서버 컴포넌트 주의사항]() <br />
 [6. 네비게이팅]() <br />
 [7. 한입북스 UI 구현하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section04/docs/07_%ED%95%9C%EC%9E%85%EB%B6%81%EC%8A%A4_UI_%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0.md) <br />
+
+## SECTION05. 데이터 페칭
+[1. 앱 라우터의 데이터 페칭](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section05/docs/01_%EC%95%B1_%EB%9D%BC%EC%9A%B0%ED%84%B0%EC%9D%98_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%8E%98%EC%B9%AD.md) <br />
+[2. 데이터 캐시](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section05/docs/02_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%BA%90%EC%8B%9C.md) <br />
+[3. 리퀘스트 메모이제이션]() <br />
