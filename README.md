@@ -17,3 +17,12 @@
 [9. 한입북스 UI 구현하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section03/docs/09_%ED%95%9C%EC%9E%85%EB%B6%81%EC%8A%A4_UI_%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0.md) <br />
 [10. 사전 렌더링과 데이터패칭](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section03/docs/10_%EC%82%AC%EC%A0%84_%EB%A0%8C%EB%8D%94%EB%A7%81%EA%B3%BC_%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%8C%A8%EC%B9%AD.md) <br />
 [11. SSR 1. 소개 및 실습](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section03/docs/11_SSR_1_%EC%86%8C%EA%B0%9C_%EB%B0%8F_%EC%8B%A4%EC%8A%B5.md)<br />
+
+## SECTION04. App Router 시작하기
+[1. App Router 시작하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section04/docs/01_App_Router_%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0.md) <br />
+[2. 페이지 라우팅 설정하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section04/docs/02_%ED%8E%98%EC%9D%B4%EC%A7%80_%EB%9D%BC%EC%9A%B0%ED%8C%85_%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0.md) <br />
+[3. 레이아웃 설정하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section04/docs/03_%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83_%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0.md) <br />
+[4. 리액트 서버 컴포넌트 이해하기]() <br />
+[5. 리액트 서버 컴포넌트 주의사항]() <br />
+[6. 네비게이팅]() <br />
+[7. 한입북스 UI 구현하기](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section04/docs/07_%ED%95%9C%EC%9E%85%EB%B6%81%EC%8A%A4_UI_%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0.md) <br />
