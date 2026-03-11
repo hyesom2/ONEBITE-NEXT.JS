@@ -31,3 +31,10 @@
 [1. 앱 라우터의 데이터 페칭](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section05/docs/01_%EC%95%B1_%EB%9D%BC%EC%9A%B0%ED%84%B0%EC%9D%98_%EB%8D%B0%EC%9D%B4%ED%84%B0_%ED%8E%98%EC%B9%AD.md) <br />
 [2. 데이터 캐시](https://github.com/hyesom2/ONEBITE-NEXT.JS/blob/main/section05/docs/02_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%BA%90%EC%8B%9C.md) <br />
 [3. 리퀘스트 메모이제이션]() <br />
+
+## SECTION06. 페이지 캐싱
+[1. 풀 라우트 캐시(1)]() <br />
+[2. 풀 라우트 캐시(2)]() <br />
+[3. 풀 라우트 캐시(3)]() <br />
+[4. 라우트 세그먼트 옵션]() <br />
+[5. 클라이언트 라우터 캐시]() <br />
