@@ -1,8 +1,6 @@
 import BookItem from '@/components/book-item';
 import { BookData } from '@/types';
 
-export const dynamic = 'error';
-
 export default async function Page({ searchParams }: { searchParams: Promise<{ q?: string }>; }) {
   const params = await searchParams;
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${params.q}`, { cache: 'force-cache'});
