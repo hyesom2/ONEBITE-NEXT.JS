@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import style from './page.module.css';
+import { creteReviewAction } from '@/actions/create-review.action';
 
 async function BookDetail({ bookId }: { bookId: string }) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
@@ -27,22 +28,14 @@ async function BookDetail({ bookId }: { bookId: string }) {
   )
 }
 
-function ReviewEditor() {
-  async function creteReviewAction(formData: FormData) {
-    "use server";
-
-    const content = formData.get("content")?.toString();
-    const author = formData.get("author")?.toString();
-
-    console.log(content, author);
-  }
-
+function ReviewEditor({ bookId }: { bookId: string }) {
   return (
     <section>
       <form action={creteReviewAction}>
-        <input name="content" placeholder="리뷰 내용" />
-        <input name="author" placeholder="작성자" />
-        <button type="button">작성하기</button>
+        <input name="bookId" value={bookId} hidden readOnly />
+        <input name="content" placeholder="리뷰 내용" required />
+        <input name="author" placeholder="작성자" required />
+        <button>작성하기</button>
       </form>
     </section>
   )
@@ -58,7 +51,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   return (
     <div className={style.container}>
       <BookDetail bookId={id} />
-      <ReviewEditor />
+      <ReviewEditor bookId={id} />
     </div>
   )
 }
