@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import style from './page.module.css';
 import { creteReviewAction } from '@/actions/create-review.action';
+import { ReviewData } from '@/types';
+import ReviewItem from '@/components/review-item';
 
 async function BookDetail({ bookId }: { bookId: string }) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
@@ -43,7 +45,24 @@ function ReviewEditor({ bookId }: { bookId: string }) {
 
 export function generateStaticParams() {
   return [{ id: '1' }, { id: '2' }, { id: '3' }];
-} 
+}
+
+async function ReviewList({ bookId }: { bookId: string }) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`)
+  if (!response.ok) {
+    throw new Error(`Review fetch failed: ${response.statusText}`);
+  }
+
+  const reviews: ReviewData[] = await response.json();
+
+  return (
+    <section>
+      {
+        reviews.map((review) => <ReviewItem key={`review-item-${review.id}`} {...review} />)
+      }
+    </section>
+  )
+}
 
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -52,6 +71,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
     <div className={style.container}>
       <BookDetail bookId={id} />
       <ReviewEditor bookId={id} />
+      <ReviewList bookId={id} />
     </div>
   )
 }
