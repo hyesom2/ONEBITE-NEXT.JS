@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import style from './page.module.css';
-import { creteReviewAction } from '@/actions/create-review.action';
 import { ReviewData } from '@/types';
 import ReviewItem from '@/components/review-item';
+import ReviewEditor from '@/components/review-editor';
 
 async function BookDetail({ bookId }: { bookId: string }) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
@@ -26,19 +26,6 @@ async function BookDetail({ bookId }: { bookId: string }) {
       <div className={style.subTitle}>{subTitle}</div>
       <div className={style.author}>{author} | {publisher}</div>
       <div className={style.description}>{description}</div>
-    </section>
-  )
-}
-
-function ReviewEditor({ bookId }: { bookId: string }) {
-  return (
-    <section>
-      <form action={creteReviewAction}>
-        <input name="bookId" value={bookId} hidden readOnly />
-        <input name="content" placeholder="리뷰 내용" required />
-        <input name="author" placeholder="작성자" required />
-        <button>작성하기</button>
-      </form>
     </section>
   )
 }
