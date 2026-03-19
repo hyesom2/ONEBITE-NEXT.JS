@@ -5,7 +5,7 @@ import ReviewItem from '@/components/review-item';
 import ReviewEditor from '@/components/review-editor';
 
 async function BookDetail({ bookId }: { bookId: string }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`, { cache: "force-cache" });
   if (!response.ok) {
     if (response.status === 404) {
       notFound();
@@ -35,7 +35,7 @@ export function generateStaticParams() {
 }
 
 async function ReviewList({ bookId }: { bookId: string }) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`, { cache: "force-cache" })
   if (!response.ok) {
     throw new Error(`Review fetch failed: ${response.statusText}`);
   }
