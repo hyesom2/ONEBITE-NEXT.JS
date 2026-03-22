@@ -1,11 +1,9 @@
 import BookItem from '@/components/book-item';
 import { BookData } from '@/types';
-import { delay } from '@/util/delay';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 async function SearchResult({ q }: { q: string }) {
-  await delay(2000);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${q}`, { cache: 'force-cache'});
   if (!response.ok) {
     return <div>검색 중 오류가 발생했습니다...</div>
