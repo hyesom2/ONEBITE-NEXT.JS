@@ -3,8 +3,8 @@ import style from './page.module.css';
 import { BookData } from '@/types';
 import { delay } from '@/util/delay';
 import { Suspense } from 'react';
-import BookItemSkeleton from '@/components/skeleton/book-item-skeleton';
 import BookListSkeleton from '@/components/skeleton/book-list-skeleton';
+import { Metadata } from 'next';
 
 async function AllBooks() {
   await delay(1500);
@@ -46,17 +46,22 @@ async function RecoBooks() {
 
 export const dynamic = 'force-dynamic';
 
+export const metadata: Metadata = {
+  title: "한입 북스",
+  description: "한입 북스에 등록된 도서를 만나보세요",
+  openGraph: {
+    title: "한입 북스",
+    description: "한입 북스에 등록된 도서를 만나보세요",
+    images: ["/thumbnail.png"],
+  },
+};
+
 export default function Home() {
   return (
     <div className={style.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
         <Suspense fallback={
-          // <>
-          //   <BookItemSkeleton />
-          //   <BookItemSkeleton />
-          //   <BookItemSkeleton />
-          // </>
           <BookListSkeleton count={3} />
         }>
           <RecoBooks />
